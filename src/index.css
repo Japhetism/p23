@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 96%;
+    --foreground: 210 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 10%;
+
+    --primary: 168 50% 20%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 210 20% 10%;
+
+    --muted: 210 15% 93%;
+    --muted-foreground: 210 10% 50%;
+
+    --accent: 330 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 15% 90%;
+    --input: 210 15% 90%;
+    --ring: 168 50% 20%;
+
+    --radius: 0.75rem;
+
+    --sidebar-bg: 180 15% 12%;
+    --sidebar-fg: 0 0% 85%;
+    --sidebar-active: 168 50% 35%;
+    --sidebar-active-fg: 0 0% 100%;
+
+    --dashboard-dark: 180 15% 12%;
+    --dashboard-dark-fg: 0 0% 95%;
+    --pink: 330 85% 60%;
+    --pink-light: 330 85% 75%;
+    --cyan: 185 60% 50%;
+
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
