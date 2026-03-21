@@ -28,8 +28,8 @@ export const MockDashboardData: DashboardData = {
       { month: "dec", value: 88 },
     ],
     pipelines: [
-      { name: "contracted", value: "30%" },
-      { name: "qualify", value: "57%" },
+      { name: "contracted", value: "30%", color: "#021717" },
+      { name: "qualify", value: "57%", color: "#FD46E8" },
     ],
     totalSales: "2,100K",
   },

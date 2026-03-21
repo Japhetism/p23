@@ -11,6 +11,7 @@ export type TrendByDay = {
 export type Pipeline = {
   name: string;
   value: string;
+  color: string;
 };
 
 export type ChartData = {

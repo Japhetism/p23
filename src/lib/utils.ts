@@ -13,3 +13,8 @@ export const transformTrend = (data: TrendByMonth[]): OutputItem[] => {
 export const formatCurrency = (value: number): string => {
   return new Intl.NumberFormat().format(value);
 }
+
+export const capitalize = (word: string): string => {
+  if (!word) return "";
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}

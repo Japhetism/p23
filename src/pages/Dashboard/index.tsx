@@ -16,7 +16,7 @@ const Dashboard = () => {
     <React.Fragment>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-5">
         <TotalLeadsCard data={leads.trend} total={leads.total} />
-        <LeadsPipelineCard />
+        <LeadsPipelineCard data={leads.pipelines} />
         <TotalSalesCard />
       </div>
 
