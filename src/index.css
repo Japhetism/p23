@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
 @layer base {
   :root {
     --background: 210 20% 96%;
@@ -47,7 +51,7 @@
     --pink-light: 330 85% 75%;
     --cyan: 185 60% 50%;
 
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 }
 
