@@ -1,30 +1,30 @@
-type TrendByMonth = {
+export type TrendByMonth = {
   month: string;
   value: number;
 };
 
-type TrendByDay = {
+export type TrendByDay = {
   day: string;
   value: number;
 };
 
-type Pipeline = {
+export type Pipeline = {
   name: string;
   value: string;
 };
 
-type ChartData = {
+export type ChartData = {
   name: string;
   value: number;
 };
 
-type CustomerChartData = {
+export type CustomerChartData = {
   name: string;
   uv: number;
   fill: string;
 };
 
-type Person = {
+export type Person = {
   name: string;
   role: string;
   pix: string;
@@ -66,4 +66,8 @@ export type DashboardData = {
     score: number;
     totalScore: number;
   }
+};
+
+export type OutputItem = {
+  v: number;
 };
