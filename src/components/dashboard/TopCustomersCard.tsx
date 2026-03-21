@@ -10,14 +10,6 @@ const data = [
   { name: "Customer 1", uv: 65, fill: "#021717" },
 ];
 
-const pieData = [
-  { name: "Customer 1", value: 40 },
-  { name: "Customer 2", value: 35 },
-  { name: "Customer 3", value: 25 },
-];
-
-const COLORS = ["#021717", "#146AFA", "#FD46E8"];
-
 const customers = [
   { name: "Lane Wade", role: "E-commerce", pix: image1, color: "#B190B6" },
   { name: "Lane Wade", role: "E-commerce", pix: image2, color: "#F05831" },
@@ -60,11 +52,11 @@ const TopCustomersCard = () => (
 
     {/* Legend */}
     <div className="flex justify-center gap-4">
-      {pieData.map((item, i) => (
+      {data.reverse().map((item, i) => (
         <div key={i} className="flex items-center gap-1.5">
           <div
             className="w-2.5 h-2.5 rounded-full"
-            style={{ backgroundColor: COLORS[i] }}
+            style={{ backgroundColor: item.fill }}
           />
           <span className="text-[10px] text-[#000000]">{item.name}</span>
         </div>
