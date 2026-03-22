@@ -1,5 +1,4 @@
 import { Bell, Settings, Menu } from "lucide-react";
-import image61 from "@/assets/images/image61.png";
 import { MockAuthUser } from "@/fixtures";
 
 interface DashboardHeaderProps {
@@ -12,7 +11,7 @@ const Header = ({ onMenuClick }: DashboardHeaderProps) => (
       <button className="lg:hidden text-foreground" onClick={onMenuClick}>
         <Menu size={24} />
       </button>
-      <h1 className="text-[32px] text-[#34373C] md:text-[32px] font-display font-bold text-foreground">
+      <h1 className="text-[32px] text-[#34373C] md:text-[32px] font-bold">
         Dashboard
       </h1>
     </div>

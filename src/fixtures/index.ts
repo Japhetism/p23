@@ -66,7 +66,7 @@ export const MockDashboardData: DashboardData = {
   tasks: {
     data: [
       { name: "Task Completed", value: "70%" },
-      { name: "Better than previous month", value: "30%" },
+      { name: "Better than previous month", value: "31%" },
     ],
     meetings: [
       { name: "Lane Wade", role: "E-commerce", pix: image61, color: "#9099B6" },

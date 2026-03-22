@@ -31,7 +31,7 @@ const LeadsPipelineCard = ({ data }: LeadsPipelineCardProps) => (
           </div>
           {/* Outer track */}
           <div
-            className="h-2 bg-gray-200 rounded-full overflow-hidden h-[10px]"
+            className="h-[14px] bg-gray-200 rounded-full overflow-hidden"
             style={{ width: index === 0 ? "81px" : "165px" }}
           >
             {/* Filled portion */}

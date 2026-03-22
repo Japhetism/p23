@@ -65,8 +65,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
           {navItems.map((item) => (
             <div key={item.label}>
               <button
-                onClick={() => item.children && setCrmOpen(!crmOpen)}
-                className={`flex items-center gap-3 w-full px-8 py-2.5 rounded-lg text-[16px] font-medium transition-colors ${
+                className={`flex items-center gap-3 w-full px-8 py-2.5 rounded-[40px] text-[16px] font-medium transition-colors ${
                   item.active
                     ? "bg-[#356364] text-white rounded-[20px]"
                     : "hover:bg-sidebar-active/10 text-sidebar-fg"
