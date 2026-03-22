@@ -7,7 +7,7 @@ This project is my submission for the **Senior Front-End Developer** assessment.
 ## 🌐 Live Preview
 
 You can view the deployed application here:  
-**[Live Preview Link](https://github.com/Japhetism/p23.git)**
+**[https://p23africababatundeojo.vercel.app/](https://p23africababatundeojo.vercel.app/)**
 
 > Note: This deployment is hosted on Vercel/Netlify and reflects the production-ready version of the project.
 
