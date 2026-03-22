@@ -27,6 +27,8 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
   const yAxisMin = 0;
   const yAxisMax = 300;
 
+  const chartSummary = `Revenue bar chart for ${selectedTimeFrame}. The highest revenue was $${maxValue}.`;
+
   const renderMaxLabel = (props: any) => {
     const { x, y, value } = props;
     if (value !== maxValue) return null;
@@ -37,6 +39,7 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
         y={y - 25}
         width={40}
         height={20}
+        aria-hidden="true"
       >
         <div className="flex items-center justify-center bg-[#F7DCFE] text-[#616263] text-[10px] rounded-[10px] px-2 py-[1px]">
           ${value}
@@ -46,15 +49,21 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
   };
 
   return (
-    <div className="bg-card rounded-2xl p-5 border border-border shadow-md lg:pr-10 h-full">
+    <section 
+      aria-labelledby="revenue-title"
+      className="bg-card rounded-2xl p-5 border border-border shadow-md lg:pr-10 h-full"
+    >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <h3 className="text-[14px] font-medium text-[#34373C]">Revenue</h3>
+          <h3 id="revenue-title" className="text-[14px] font-medium text-[#34373C]">Revenue</h3>
         </div>
+        
+        <label htmlFor="revenue-timeframe" className="sr-only">Select timeframe for revenue</label>
         <select
+          id="revenue-timeframe"
           value={selectedTimeFrame}
           onChange={(e) => setSelectedTimeFrame(e.target.value)}
-          className="text-[9px] text-white bg-[#5E5D5D] px-1 py-1 rounded-[3px] border-none outline-none cursor-pointer"
+          className="text-[9px] text-white bg-[#5E5D5D] px-1 py-1 rounded-[3px] border-none outline-none cursor-pointer focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
         >
           {TIMEFRAMES.map((item: string, index: number) => (
             <option key={index} value={item}>
@@ -64,13 +73,18 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
         </select>
       </div>
 
-      <div className="h-36">
+      <div 
+        className="h-36"
+        role="img"
+        aria-label={chartSummary}
+      >
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={transformedData}
             barSize={barWidth}
             barCategoryGap="30%"
             margin={{ top: 40, right: 0, bottom: 0, left: 0 }}
+            aria-hidden="true" 
           >
             <YAxis
               axisLine={false}
@@ -99,7 +113,7 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
           </BarChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </section>
   );
 };
 
