@@ -17,36 +17,41 @@ const CustomerMetric = ({ insight }: CustomerMetricProps) => {
   )`;
 
   return (
-    <div className="bg-card rounded-xl p-4 text-card-foreground hidden lg:block h-[279px]">
+    <section 
+      aria-labelledby="customer-metric-title"
+      className="bg-card rounded-xl p-4 text-card-foreground hidden lg:block h-[279px]"
+    >
       <div className="flex items-center justify-between mb-1">
         <div>
-          <p className="text-[14px] text-[#34373C] font-medium">
+          <h3 id="customer-metric-title" className="text-[14px] text-[#34373C] font-medium">
             Customer metric
-          </p>
+          </h3>
           <p className="text-[10px] text-[#616263] font-regular text-muted-foreground">
             Overall Insight
           </p>
         </div>
-        <ChevronRightIcon className="text-[#34373C] w-[24px] h-[]24px" />
+        <ChevronRightIcon className="text-[#34373C] w-[24px] h-[24px]" aria-hidden="true" />
       </div>
 
       <div className="flex items-center justify-center mt-8">
         <div
           className="relative w-[149px] h-[149px] rounded-full p-[2px] flex items-center justify-center"
           style={{ background: gradient }}
+          role="img"
+          aria-label={`Gauge showing ${insight.name}'s customer metric score: ${insight.score} out of ${insight.totalScore}.`}
         >
-          <div className="absolute left-3.5 top-8 -translate-y-1/2 -translate-x-1/2 w-[10px] h-[10px] rounded-full bg-[#FD6046]" />
+          <div aria-hidden="true" className="absolute left-3.5 top-8 -translate-y-1/2 -translate-x-1/2 w-[10px] h-[10px] rounded-full bg-[#FD6046]" />
 
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[7px] text-[#616263] font-medium">
+          <div aria-hidden="true" className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[7px] text-[#616263] font-medium">
             {insight.score.toFixed(1)}/{insight.totalScore.toFixed(1)}
           </div>
 
-          <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+          <div aria-hidden="true" className="w-full h-full rounded-full bg-white flex items-center justify-center">
             <div className="w-[117px] h-[117px] rounded-full p-[3px] bg-[linear-gradient(180deg,#F6F6F6_0%,#38696B_100%)] flex items-center justify-center">
               <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
                 <img
                   src={insight.pix}
-                  alt="image"
+                  alt={`${insight.name}'s profile`}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -55,10 +60,10 @@ const CustomerMetric = ({ insight }: CustomerMetricProps) => {
         </div>
       </div>
 
-      <p className="text-[10px] text-[#616263] text-center font-medium mt-2">
+      <p className="text-[10px] text-[#616263] text-center font-medium mt-2" aria-hidden="true">
         {insight.name}
       </p>
-    </div>
+    </section>
   );
 };
 

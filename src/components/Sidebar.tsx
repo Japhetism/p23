@@ -35,7 +35,6 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
 
   return (
     <>
-      {/* Overlay for mobile */}
       {open && (
         <div
           className="fixed inset-0 bg-foreground/40 z-40 lg:hidden"
