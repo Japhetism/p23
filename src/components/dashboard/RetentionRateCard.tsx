@@ -14,9 +14,9 @@ const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
   const isEmpty =
     !data || data.length === 0 || data.every((item) => item.value === 0);
 
-  const completed = data[0]?.value || 0;
-  const remaining = data[1]?.value || 100 - completed;
-  const remainingValue = data.find((d) => d.name === "Remaining")?.value || 0;
+  const completed = data?.[0]?.value || 0;
+  const remaining = data?.[1]?.value || 100 - completed;
+  const remainingValue = data?.find((d) => d.name === "Remaining")?.value || 0;
 
   const pieData = [
     { name: "completed", value: completed },

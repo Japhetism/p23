@@ -12,18 +12,21 @@ type TopCustomersCardProps = {
 
 const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
   const [selectedTimeFrame, setSelectedTimeFrame] = useState<string>("Weekly");
-  const normalizedData = data.map((item) => ({
+  const normalizedData = data?.map((item) => ({
     ...item,
     uv: Math.min(item.uv, 100),
   }));
 
   const chartData = [
-    ...normalizedData,
+    ...(normalizedData || []),
     { name: "dummy", uv: 100, fill: "#ffffff" },
   ];
 
-  const maxPercentage = Math.max(...normalizedData.map((d) => d.uv));
-  const legends = [...normalizedData].reverse();
+  const maxPercentage = normalizedData?.length
+    ? Math.max(...normalizedData.map((d) => d.uv))
+    : 0;
+    
+  const legends = [...(normalizedData ?? [])].reverse();
 
   const hasData = topCustomers && topCustomers.length > 0;
 
@@ -106,7 +109,7 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
           className="flex flex-col gap-4 pl-5 pr-5 list-none"
           aria-label="Customer list"
         >
-          {topCustomers.map((c, i) => (
+          {topCustomers?.map((c, i) => (
             <li
               key={i}
               className="flex items-center gap-3 p-2 rounded-[20px] hover:bg-[#ECECEC] transition-colors cursor-pointer focus-within:ring-2 focus-within:ring-gray-200"

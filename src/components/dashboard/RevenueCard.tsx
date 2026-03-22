@@ -19,7 +19,7 @@ type RevenueCardProps = {
 
 const RevenueCard = ({ data }: RevenueCardProps) => {
   const [selectedTimeFrame, setSelectedTimeFrame] = useState<string>("Weekly");
-  const transformedData = transformRevenueTrend(data);
+  const transformedData = data ? transformRevenueTrend(data) : [];
 
   const isEmpty =
     !data || data.length === 0 || data.every((item) => item.value === 0);

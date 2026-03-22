@@ -18,7 +18,7 @@ const TotalSalesCard = ({ sales }: TotalSalesCardProps) => (
       aria-label={`Total sales: ${sales} dollars`}
     >
       <span className="text-[50px] text-[#34373C] font-medium" aria-hidden="true">
-        {sales}
+        {sales ?? 0}
       </span>
       <span className="text-lg text-[#34373C] ml-1" aria-hidden="true">
         $

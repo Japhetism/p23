@@ -28,9 +28,9 @@ const Dashboard = () => {
         role="region"
         aria-label="Key Performance Indicators"
       >
-        <TotalLeadsCard data={leads.trend} total={leads.total} />
-        <LeadsPipelineCard data={leads.pipelines} />
-        <TotalSalesCard sales={leads.totalSales} />
+        <TotalLeadsCard data={leads?.trend} total={leads?.total} />
+        <LeadsPipelineCard data={leads?.pipelines} />
+        <TotalSalesCard sales={leads?.totalSales} />
       </div>
 
       {/* Second row: Detailed Analytics */}
@@ -39,23 +39,23 @@ const Dashboard = () => {
         <div className="lg:col-span-2 flex flex-col gap-4 h-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
             <div className="h-full flex flex-col">
-              <RevenueCard data={revenue.trend} />
+              <RevenueCard data={revenue?.trend} />
             </div>
             <div className="h-full flex flex-col">
-              <RetentionRateCard data={retentionRate.data} />
+              <RetentionRateCard data={retentionRate?.data} />
             </div>
           </div>
 
           <div className="flex flex-col gap-4 h-full">
-            <WeeklyTasksCard data={tasks.data} meetings={tasks.meetings} />
+            <WeeklyTasksCard data={tasks?.data} meetings={tasks?.meetings} />
           </div>
         </div>
 
         {/* Right column (Customer Insights) */}
         <div className="flex flex-col gap-4 h-full">
           <TopCustomersCard
-            data={customers.data}
-            topCustomers={customers.topCustomers}
+            data={customers?.data}
+            topCustomers={customers?.topCustomers}
           />
         </div>
       </div>

@@ -23,9 +23,9 @@ const DashboardSkeleton = () => {
     <div className="w-full" aria-hidden="true">
       {/* First row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-5">
-        <SkeletonCard className="h-[180px]" />
-        <SkeletonCard className="h-[180px]" />
-        <SkeletonCard className="h-[180px]" />
+        <SkeletonCard className="h-[150px]" />
+        <SkeletonCard className="h-[150px]" />
+        <SkeletonCard className="h-[150px]" />
       </div>
 
       {/* Second row */}

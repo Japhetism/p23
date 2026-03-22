@@ -8,7 +8,7 @@ type TotalLeadsCardsProps = {
 };
 
 const TotalLeadsCard = ({ data, total }: TotalLeadsCardsProps) => {
-  const transformedData = transformTrend(data);
+  const transformedData = data ? transformTrend(data) : [];
 
   return (
     <section 
@@ -35,7 +35,7 @@ const TotalLeadsCard = ({ data, total }: TotalLeadsCardsProps) => {
           className="text-[50px] text-[#34373C] font-bold text-foreground"
           aria-hidden="true"
         >
-          {formatCurrency(total)}
+          {total ? formatCurrency(total) : 0}
         </span>
         <span 
           className="text-[15px] text-[#34373C] text-muted-foreground"

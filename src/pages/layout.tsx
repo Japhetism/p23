@@ -7,30 +7,28 @@ const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-background">
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:block w-64">
+    <div className="flex h-screen overflow-hidden bg-background">
+      <div className="hidden lg:block w-64 h-full border-r">
         <Sidebar open={true} onClose={() => {}} />
       </div>
 
-      {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
-        <div className="fixed inset-0 z-40 flex lg:hidden">
-          <div className="w-64">
+        <div className="fixed inset-0 z-50 flex lg:hidden">
+          <div className="relative z-50 w-64 h-full">
             <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
           </div>
-          {/* Backdrop */}
           <div
-            className="flex-1 bg-black/50"
+            className="fixed inset-0 bg-black/50"
             onClick={() => setSidebarOpen(false)}
           />
         </div>
       )}
 
-      {/* Main Content */}
-      <main className="flex-1 p-4 lg:px-14 lg:py-8">
+      <main className="flex-1 h-full overflow-y-auto p-4 lg:px-14 lg:py-8">
         <Header onMenuClick={() => setSidebarOpen(true)} />
-        <Outlet />
+        <div className="mt-4">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

@@ -35,7 +35,7 @@ const WeeklyTasksCard = ({ data, meetings }: WeeklyTasksCardProps) => {
             role="list"
             aria-label="Task statistics"
           >
-            {data.map((item, index) => (
+            {data?.map((item, index) => (
               <div key={index} role="listitem" className="flex flex-col">
                 <span className="text-[50px] text-white sm:text-5xl font-medium leading-none">
                   {item.value}
@@ -78,7 +78,7 @@ const WeeklyTasksCard = ({ data, meetings }: WeeklyTasksCardProps) => {
               className="flex flex-col gap-3 bg-[#113939] rounded-[20px] p-5 list-none"
               aria-labelledby="meetings-heading"
             >
-              {meetings.map((m, i) => (
+              {meetings?.map((m, i) => (
                 <li
                   key={i}
                   className="flex items-center gap-3 bg-[#F9FFFF] rounded-[20px] px-4 py-3 shadow-sm"
