@@ -80,3 +80,8 @@ export type OutputRevenueItem = {
   day: string;
   v: number;
 };
+
+export interface ApiResponse<T> {
+  data: T;
+  status: number;
+}

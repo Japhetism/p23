@@ -1,31 +1,24 @@
-import { useState, useEffect } from "react";
-import { MockDashboardData } from "@/fixtures";
+import { useQuery } from "@tanstack/react-query";
+import { DashboardApi } from "@/api/dashboard";
 
 function useDashboardViewModel() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const { leads, revenue, retentionRate, customers, tasks, insight } =
-    MockDashboardData;
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["dashboard-stats"],
+    queryFn: DashboardApi.getStats,
+    staleTime: 5 * 60 * 1000, 
+  });
 
   return {
     isLoading,
-    leads,
-    revenue,
-    retentionRate,
-    customers,
-    tasks,
-    insight,
+    isError,
+    retry: refetch,
+    leads: data?.leads,
+    revenue: data?.revenue,
+    retentionRate: data?.retentionRate,
+    customers: data?.customers,
+    tasks: data?.tasks,
+    insight: data?.insight,
   };
 }
 
 export default useDashboardViewModel;
-
-export type DashboardViewModel = ReturnType<typeof useDashboardViewModel>;
