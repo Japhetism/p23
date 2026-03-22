@@ -18,16 +18,23 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
   const transformedData = transformRevenueTrend(data);
 
   const maxValue = Math.max(...transformedData.map((item) => item.v));
-  const barWidth = 30; // same as barSize in BarChart
+  const barWidth = 30;
 
-  // Properly center the label above the max bar
+  const yAxisTicks = [100, 200, 300];
+  const yAxisMin = 0;
+  const yAxisMax = 300;
+
   const renderMaxLabel = (props: any) => {
     const { x, y, value } = props;
     if (value !== maxValue) return null;
 
-    // Center the label by subtracting half of the label width (here 30px)
     return (
-      <foreignObject x={x + barWidth / 2 - 20} y={y - 25} width={40} height={20}>
+      <foreignObject
+        x={x + barWidth / 2 - 20}
+        y={y - 25}
+        width={40}
+        height={20}
+      >
         <div className="flex items-center justify-center bg-[#F7DCFE] text-[#616263] text-[10px] rounded-[10px] px-2 py-[1px]">
           ${value}
         </div>
@@ -52,7 +59,7 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
             data={transformedData}
             barSize={barWidth}
             barCategoryGap="30%"
-            margin={{ top: 20, right: 0, bottom: 0, left: 0 }}
+            margin={{ top: 40, right: 0, bottom: 0, left: 0 }}
           >
             <YAxis
               axisLine={false}
@@ -60,8 +67,8 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
               tick={{ fontSize: 10, fill: "hsl(210,10%,50%)" }}
               tickFormatter={(v) => `${v}$`}
               width={35}
-              domain={[0, 400]}
-              ticks={[100, 200, 300]}
+              domain={[yAxisMin, yAxisMax]}
+              ticks={yAxisTicks}
             />
             <XAxis
               dataKey="day"
