@@ -7,7 +7,7 @@ This project is my submission for the **Senior Front-End Developer** assessment.
 ## 🌐 Live Preview
 
 You can view the deployed application here:  
-**[Live Preview Link](https://your-deployment-link.com)**
+**[Live Preview Link](https://github.com/Japhetism/p23.git)**
 
 > Note: This deployment is hosted on Vercel/Netlify and reflects the production-ready version of the project.
 
