@@ -8,9 +8,9 @@ import {
   Cell,
   LabelList,
 } from "recharts";
+import TimeFrameSelection from "../TimeFrameSelection";
 import { transformRevenueTrend } from "@/utils";
 import { TrendByDay } from "@/types";
-import { TIMEFRAMES } from "@/constants";
 
 type RevenueCardProps = {
   data: TrendByDay[];
@@ -49,42 +49,35 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
   };
 
   return (
-    <section 
+    <section
       aria-labelledby="revenue-title"
       className="bg-card rounded-2xl p-5 border border-border shadow-md lg:pr-10 h-full"
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <h3 id="revenue-title" className="text-[14px] font-medium text-[#34373C]">Revenue</h3>
+          <h3
+            id="revenue-title"
+            className="text-[14px] font-medium text-[#34373C]"
+          >
+            Revenue
+          </h3>
         </div>
-        
-        <label htmlFor="revenue-timeframe" className="sr-only">Select timeframe for revenue</label>
-        <select
-          id="revenue-timeframe"
+
+        <TimeFrameSelection
+          label="Select timeframe for revenue"
           value={selectedTimeFrame}
-          onChange={(e) => setSelectedTimeFrame(e.target.value)}
-          className="text-[9px] text-white bg-[#5E5D5D] px-1 py-1 rounded-[3px] border-none outline-none cursor-pointer focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
-        >
-          {TIMEFRAMES.map((item: string, index: number) => (
-            <option key={index} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
+          onChange={(val) => setSelectedTimeFrame(val)}
+        />
       </div>
 
-      <div 
-        className="h-36"
-        role="img"
-        aria-label={chartSummary}
-      >
+      <div className="h-36" role="img" aria-label={chartSummary}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={transformedData}
             barSize={barWidth}
             barCategoryGap="30%"
             margin={{ top: 40, right: 0, bottom: 0, left: 0 }}
-            aria-hidden="true" 
+            aria-hidden="true"
           >
             <YAxis
               axisLine={false}

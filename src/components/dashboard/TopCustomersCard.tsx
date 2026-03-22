@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { MoreHorizontal } from "lucide-react";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
+import TimeFrameSelection from "../TimeFrameSelection";
 import { CustomerChartData, Person } from "@/types";
-import { TIMEFRAMES } from "@/constants";
 
 type TopCustomersCardProps = {
   data: CustomerChartData[];
@@ -25,31 +25,27 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
   const legends = [...normalizedData].reverse();
 
   return (
-    <section 
+    <section
       aria-labelledby="top-customers-title"
       className="bg-card rounded-xl p-5 border border-border shadow-md flex flex-col gap-4 h-full"
     >
       <div className="flex items-center justify-between lg:pl-20 lg:pr-10">
-        <h3 id="top-customers-title" className="text-[14px] font-medium text-[#34373C]">
+        <h3
+          id="top-customers-title"
+          className="text-[14px] font-medium text-[#34373C]"
+        >
           Top Customers
         </h3>
-        <label htmlFor="top-customers-timeframe" className="sr-only">Filter by timeframe</label>
-        <select
-          id="top-customers-timeframe"
+
+        <TimeFrameSelection
+          label="Select timeframe for top customers"
           value={selectedTimeFrame}
-          onChange={(e) => setSelectedTimeFrame(e.target.value)}
-          className="text-[9px] text-white bg-[#5E5D5D] px-1 py-1 rounded-[3px] border-none outline-none cursor-pointer focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
-        >
-          {TIMEFRAMES.map((item: string, index: number) => (
-            <option key={index} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
+          onChange={(val) => setSelectedTimeFrame(val)}
+        />
       </div>
 
       <div className="w-full flex justify-center items-center mt-6">
-        <div 
+        <div
           className="w-full h-[250px] relative flex items-center justify-center"
           role="img"
           aria-label={`Radial chart showing customer distribution. Peak value is ${maxPercentage}%.`}
@@ -66,19 +62,29 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
                 startAngle={90}
                 endAngle={-270}
               >
-                <RadialBar dataKey="uv" cornerRadius={10} background></RadialBar>
+                <RadialBar
+                  dataKey="uv"
+                  cornerRadius={10}
+                  background
+                ></RadialBar>
               </RadialBarChart>
             </ResponsiveContainer>
           </div>
 
-          <div className="absolute text-[24px] font-bold text-[#000000]" aria-hidden="true">
+          <div
+            className="absolute text-[24px] font-bold text-[#000000]"
+            aria-hidden="true"
+          >
             {maxPercentage}%
           </div>
         </div>
       </div>
 
       {/* Legends */}
-      <ul className="flex justify-center gap-4 list-none" aria-label="Chart legend">
+      <ul
+        className="flex justify-center gap-4 list-none"
+        aria-label="Chart legend"
+      >
         {legends.map((item, i) => (
           <li key={i} className="flex items-center gap-1.5">
             <div
@@ -92,7 +98,10 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
       </ul>
 
       {/* Customer List */}
-      <ul className="flex flex-col gap-4 pl-5 pr-5 list-none" aria-label="Customer list">
+      <ul
+        className="flex flex-col gap-4 pl-5 pr-5 list-none"
+        aria-label="Customer list"
+      >
         {topCustomers.map((c, i) => (
           <li
             key={i}
@@ -114,7 +123,7 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
               </p>
               <p className="text-[10px] text-[#34373C]">{c.role}</p>
             </div>
-            <button 
+            <button
               className="text-muted-foreground hover:text-foreground transition-colors p-1 focus:outline-none focus:text-black"
               aria-label={`More options for ${c.name}`}
             >

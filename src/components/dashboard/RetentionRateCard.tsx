@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import TimeFrameSelection from "../TimeFrameSelection";
 import { ChartData } from "@/types";
-import { TIMEFRAMES } from "@/constants";
 
 type RetentionRateCardProps = {
   data: ChartData[];
@@ -21,43 +21,42 @@ const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
   ];
 
   return (
-    <section 
+    <section
       className="bg-[#F9FFFF] rounded-2xl p-5 border border-border shadow-md relative lg:pl-20 lg:pr-10 h-full"
       aria-labelledby="retention-title"
     >
       <div className="flex items-center justify-between w-full mb-4">
-        <h3 id="retention-title" className="text-[14px] font-medium text-[#34373C]">
+        <h3
+          id="retention-title"
+          className="text-[14px] font-medium text-[#34373C]"
+        >
           Retention Rate
         </h3>
-        
-        <div className="flex flex-col">
-          <label htmlFor="timeframe-select" className="sr-only">Select Timeframe</label>
-          <select
-            id="timeframe-select"
-            value={selectedTimeFrame}
-            onChange={(e) => setSelectedTimeFrame(e.target.value)}
-            className="text-[9px] text-white bg-[#5E5D5D] px-2 py-1 rounded-[3px] border-none outline-none cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-          >
-            {TIMEFRAMES.map((item: string, index: number) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
+
+        <TimeFrameSelection
+          label="Select timeframe for rentention rate"
+          value={selectedTimeFrame}
+          onChange={(val) => setSelectedTimeFrame(val)}
+        />
       </div>
 
-      <div 
-        className="relative w-full flex justify-center" 
+      <div
+        className="relative w-full flex justify-center"
         style={{ height: 180, overflow: "visible" }}
-        role="img" 
+        role="img"
         aria-label={`Retention rate gauge showing ${remainingValue}% for the ${selectedTimeFrame} period.`}
       >
         <div className="w-full h-full" aria-hidden="true">
           <ResponsiveContainer width="80%" height="120%">
             <PieChart>
               <defs>
-                <linearGradient id="halfPieGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient
+                  id="halfPieGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="35.51%" stopColor="#021717" />
                   <stop offset="71.36%" stopColor="#DFF4F5" />
                 </linearGradient>
@@ -85,9 +84,9 @@ const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
           </ResponsiveContainer>
         </div>
 
-        <div 
+        <div
           className="absolute top-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2"
-          aria-hidden="true" 
+          aria-hidden="true"
         >
           <span className="text-[36px] text-[#34373C] font-bold">
             {remainingValue}
