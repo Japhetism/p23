@@ -1,23 +1,24 @@
 import { useState } from "react";
-import {
-  LayoutGrid,
-  Users,
-  FolderKanban,
-  CalendarCheck,
-  X,
-} from "lucide-react";
+import { X } from "lucide-react";
 import { MockDashboardData } from "@/fixtures";
 import CustomerMetric from "./CustomerMetric";
+import {
+  UserIcon,
+  CrmIcon,
+  ProjectIcon,
+  OverviewIcon,
+  AttendanceIcon,
+} from "@/assets/svg";
 
 const navItems = [
-  { icon: LayoutGrid, label: "Overview", active: true },
+  { icon: OverviewIcon, label: "Overview", active: true },
   {
-    icon: Users,
+    icon: CrmIcon,
     label: "CRM",
     children: [
-      { label: "Project" },
-      { label: "Attendance" },
-      { label: "Users" },
+      { label: "Project", icon: ProjectIcon },
+      { label: "Attendance", icon: AttendanceIcon },
+      { label: "Users", icon: UserIcon },
     ],
   },
 ];
@@ -71,7 +72,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
                     : "hover:bg-sidebar-active/10 text-sidebar-fg"
                 }`}
               >
-                <item.icon size={24} />
+                <item.icon className="w-[24px] h-[24px]" />
                 {item.label}
               </button>
               {item.children && (
@@ -84,11 +85,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
                       key={child.label}
                       className="flex items-center gap-2 px-3 py-2 text-[12px] text-sidebar-fg hover:text-sidebar-active-fg transition-colors rounded-md"
                     >
-                      {child.label === "Project" && <FolderKanban size={20} />}
-                      {child.label === "Attendance" && (
-                        <CalendarCheck size={20} />
-                      )}
-                      {child.label === "Users" && <Users size={20} />}
+                      <child.icon className="w-[20px] h-[20px]" />
                       {child.label}
                     </button>
                   ))}

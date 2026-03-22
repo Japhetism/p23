@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowIcon } from "@/assets/svg";
 
 type TotalSalesCardProps = {
   sales: string;
@@ -13,7 +13,7 @@ const TotalSalesCard = ({ sales }: TotalSalesCardProps) => (
     </div>
     <button className="flex items-center justify-between w-full h-[47px] bg-[#021717] rounded-[40px] px-8 py-2.5 text-sm text-white font-medium mt-auto">
       <span className="text-white text-[10px] font-regular">View Chart</span>
-      <ArrowUpRight size={20} />
+      <ArrowIcon className="w-[14px] h-[14px]" />
     </button>
   </div>
 );

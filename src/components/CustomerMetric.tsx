@@ -1,5 +1,5 @@
-import { ChevronRight } from "lucide-react";
 import { Insight } from "@/types";
+import { ChevronRightIcon } from "@/assets/svg";
 
 type CustomerMetricProps = {
   insight: Insight;
@@ -27,7 +27,7 @@ const CustomerMetric = ({ insight }: CustomerMetricProps) => {
             Overall Insight
           </p>
         </div>
-        <ChevronRight className="text-[#34373C]" size={24} />
+        <ChevronRightIcon className="text-[#34373C] w-[24px] h-[]24px" />
       </div>
 
       <div className="flex items-center justify-center mt-8">
