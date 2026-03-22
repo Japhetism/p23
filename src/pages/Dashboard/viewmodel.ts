@@ -5,6 +5,7 @@ function useDashboardViewModel() {
     MockDashboardData;
 
   return {
+    isLoading: true,
     leads,
     revenue,
     retentionRate,

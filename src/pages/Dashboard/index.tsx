@@ -6,10 +6,15 @@ import RetentionRateCard from "@/components/dashboard/RetentionRateCard";
 import TopCustomersCard from "@/components/dashboard/TopCustomersCard";
 import WeeklyTasksCard from "@/components/dashboard/WeeklyTasksCard";
 import useDashboardViewModel from "./viewmodel";
+import DashboardSkeleton from "@/components/dashboard/DashboardSkeleton";
 
 const Dashboard = () => {
-  const { leads, revenue, retentionRate, customers, tasks } =
+  const { isLoading, leads, revenue, retentionRate, customers, tasks } =
     useDashboardViewModel();
+
+  if (isLoading) {
+    return <DashboardSkeleton />
+  }
 
   return (
     <main
