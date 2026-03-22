@@ -4,12 +4,11 @@ import {
   Users,
   FolderKanban,
   CalendarCheck,
-  ChevronDown,
-  Menu,
   X,
   ChevronRight,
 } from "lucide-react";
 import image117 from "@/assets/images/image117.png";
+import { MockDashboardData } from "@/fixtures";
 
 const navItems = [
   { icon: LayoutGrid, label: "Overview", active: true },
@@ -31,6 +30,8 @@ interface SidebarProps {
 
 const Sidebar = ({ open, onClose }: SidebarProps) => {
   const [crmOpen, setCrmOpen] = useState(true);
+
+  const insight = MockDashboardData.insight;
 
   return (
     <>
@@ -119,7 +120,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
 
               {/* 🔝 Top text */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[7px] text-[#616263] font-medium">
-                4.5/5.0
+                {insight.score}/{insight.totalScore}
               </div>
 
               {/* Inner circles */}
@@ -137,7 +138,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
             </div>
           </div>
           <p className="text-[10px] text-[#616263] text-center font-medium mt-2">
-            Promising Customer
+            {insight.name}
           </p>
         </div>
       </aside>

@@ -1,5 +1,6 @@
 import { Bell, Settings, Menu } from "lucide-react";
 import image61 from "@/assets/images/image61.png";
+import { MockAuthUser } from "@/fixtures";
 
 interface DashboardHeaderProps {
   onMenuClick: () => void;
@@ -25,17 +26,17 @@ const Header = ({ onMenuClick }: DashboardHeaderProps) => (
       <div className="flex items-center gap-3 ml-2">
         <div className="w-[38px] h-[38px] rounded-full bg-[#9099B6] flex items-center justify-center overflow-hidden">
           <img
-            src={image61}
+            src={MockAuthUser.profilePix}
             alt="image"
             className="w-full h-full object-cover rounded-full [image-rendering:auto]"
           />
         </div>
         <div className="hidden sm:block">
           <p className="text-[15px] text-[#34373C] font-bold text-foreground">
-            Full Name
+            {MockAuthUser.fullName}
           </p>
           <p className="text-[10px] text-[#34373C] text-muted-foreground">
-            username@gmail.com
+            {MockAuthUser.email}
           </p>
         </div>
       </div>
