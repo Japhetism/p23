@@ -1,13 +1,15 @@
-import { X, Copy, Sparkles, Smile, XCircle, Video } from "lucide-react";
-import image3 from "@/assets/images/image3.png";
-import image61 from "@/assets/images/image61.png";
+import { Smile, XCircle, Video } from "lucide-react";
+import { Person } from "@/types";
 
-const meetings = [
-  { name: "Lane Wade", role: "E-commerce", pix: image61, color: "#9099B6" },
-  { name: "Lane Wade", role: "E-commerce", pix: image3, color: "#DC9325" },
-];
+type WeeklyTasksCardProps = {
+  data: {
+    name: string;
+    value: string;
+  }[];
+  meetings: Person[];
+};
 
-const WeeklyTasksCard = () => (
+const WeeklyTasksCard = ({ data, meetings }: WeeklyTasksCardProps) => (
   <div className="bg-[#021717] rounded-2xl p-5 text-white shadow-md col-span-1 sm:col-span-2 lg:col-span-2 pl-10 pr-10">
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <div>
@@ -15,20 +17,14 @@ const WeeklyTasksCard = () => (
           Weekly Tasks
         </h3>
         <div className="flex items-end gap-4 sm:gap-6 mb-4">
-          <div>
-            <span className="text-[50px] text-white sm:text-5xl font-medium">
-              70%
-            </span>
-            <p className="text-[10px] text-white mt-1">Task Completed</p>
-          </div>
-          <div>
-            <span className="text-[50px] text-white sm:text-5xl font-medium">
-              31%
-            </span>
-            <p className="text-[10px] text-white mt-1">
-              Better than previous month
-            </p>
-          </div>
+          {data.map((item: { name: string; value: string }, index: number) => (
+            <div key={index}>
+              <span className="text-[50px] text-white sm:text-5xl font-medium">
+                {item.value}
+              </span>
+              <p className="text-[10px] text-white mt-1">{item.name}</p>
+            </div>
+          ))}
         </div>
         <div className="flex items-center gap-2 bg-[#F5F5F5] text-[#021717] rounded-[30px] px-3 py-2 text-[10px] w-[258px]">
           <Smile size={24} />
@@ -63,7 +59,9 @@ const WeeklyTasksCard = () => (
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[15px] text-[#021717] font-semibold truncate">{m.name}</p>
+                <p className="text-[15px] text-[#021717] font-semibold truncate">
+                  {m.name}
+                </p>
                 <p className="text-[10px] text-[#021717]">{m.role}</p>
               </div>
               <button className="opacity-50 hover:opacity-100">

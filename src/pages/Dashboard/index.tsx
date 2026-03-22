@@ -26,7 +26,7 @@ const Dashboard = () => {
             <RevenueCard data={revenue.trend} />
             <RetentionRateCard data={retentionRate.data} />
           </div>
-          <WeeklyTasksCard />
+          <WeeklyTasksCard data={tasks.data} meetings={tasks.meetings} />
         </div>
 
         <div className="flex flex-col gap-4">
