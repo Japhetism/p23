@@ -13,7 +13,7 @@ const LeadsPipelineCard = ({ data }: LeadsPipelineCardProps) => (
         View
       </button>
     </div>
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1">
       {data.map((item: Pipeline, index: number) => (
         <div className="flex flex-col gap-1 items-start">
           <span
@@ -30,13 +30,16 @@ const LeadsPipelineCard = ({ data }: LeadsPipelineCardProps) => (
             <div className="w-[2px] h-[61px] bg-gray-300 -mt-1" />
           </div>
           {/* Outer track */}
-          <div className="w-[81px] h-2 bg-gray-200 rounded-full overflow-hidden h-[10px]">
+          <div
+            className="h-2 bg-gray-200 rounded-full overflow-hidden h-[10px]"
+            style={{ width: index === 0 ? "81px" : "165px" }}
+          >
             {/* Filled portion */}
             <div
               className="h-full rounded-full"
               style={{
                 background: item.color,
-                width: index === 0 ? "100%" : item.value,
+                width: index === 0 ? "100%" : `${parseFloat(item.value) + 20}%`,
               }}
             />
           </div>
