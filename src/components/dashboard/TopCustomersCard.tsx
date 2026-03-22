@@ -24,7 +24,6 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
 
   return (
     <div className="bg-card rounded-xl p-5 border border-border shadow-md flex flex-col gap-4">
-      {/* Header */}
       <div className="flex items-center justify-between pl-20 pr-10">
         <h3 className="text-[14px] font-medium text-[#34373C]">
           Top Customers
@@ -34,7 +33,7 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
         </select>
       </div>
 
-      <div className="w-full flex justify-center items-center mt-16">
+      <div className="w-full flex justify-center items-center mt-8">
         <div className="w-full h-[250px] relative flex items-center justify-center">
           <ResponsiveContainer width="100%" height="100%">
             <RadialBarChart
@@ -57,7 +56,6 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
         </div>
       </div>
 
-      {/* Legend */}
       <div className="flex justify-center gap-4">
         {legends.map((item, i) => (
           <div key={i} className="flex items-center gap-1.5">
@@ -70,9 +68,12 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
         ))}
       </div>
 
-      <div className="flex flex-col gap-3 pl-5 pr-5">
+      <div className="flex flex-col gap-4 pl-5 pr-5">
         {topCustomers.map((c, i) => (
-          <div key={i} className="flex items-center gap-3">
+          <div
+            key={i}
+            className="flex items-center gap-3 p-2 rounded hover:bg-gray-100 transition-colors cursor-pointer"
+          >
             <div
               className="w-9 h-9 rounded-full flex items-center justify-center text-sm"
               style={{ backgroundColor: c.color }}
