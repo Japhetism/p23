@@ -30,7 +30,7 @@ const Dashboard = () => {
         </div>
 
         <div className="flex flex-col gap-4">
-          <TopCustomersCard />
+          <TopCustomersCard data={customers.data} topCustomers={customers.topCustomers} />
         </div>
       </div>
     </React.Fragment>
