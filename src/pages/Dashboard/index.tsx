@@ -23,7 +23,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-3 gap-4 sm:gap-5">
         <div className="col-span-2 flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-4">
-            <RevenueCard />
+            <RevenueCard data={revenue.trend} />
             <RetentionRateCard />
           </div>
           <WeeklyTasksCard />

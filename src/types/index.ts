@@ -72,3 +72,8 @@ export type DashboardData = {
 export type OutputItem = {
   v: number;
 };
+
+export type OutputRevenueItem = {
+  day: string;
+  v: number;
+};

@@ -35,7 +35,7 @@ export const MockDashboardData: DashboardData = {
   },
   revenue: {
     trend: [
-      { day: "Mmn", value: 150 },
+      { day: "mon", value: 150 },
       { day: "tue", value: 200 },
       { day: "wed", value: 120 },
       { day: "thu", value: 250 },
