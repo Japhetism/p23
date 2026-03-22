@@ -49,7 +49,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
         ${open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}
       >
-        <div className="flex items-center justify-center mt-10 mb-10 gap-4">
+        <div className="flex items-center justify-center mt-5 mb-10 gap-4">
           <div className="flex items-center gap-2">
             <div className="w-[27px] h-[27px] rounded-full bg-white" />
             <span className="text-[24px] font-semibold text-sidebar-active-fg">
