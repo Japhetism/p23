@@ -9,7 +9,7 @@ This project is my submission for the **Senior Front-End Developer** assessment.
 You can view the deployed application here:  
 **[https://p23africababatundeojo.vercel.app/](https://p23africababatundeojo.vercel.app/)**
 
-> Note: This deployment is hosted on Vercel/Netlify and reflects the production-ready version of the project.
+> Note: This deployment is hosted on Vercel and reflects the production-ready version of the project.
 
 ---
 
