@@ -33,7 +33,7 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
         </select>
       </div>
 
-      <div className="w-full flex justify-center items-center mt-8">
+      <div className="w-full flex justify-center items-center mt-7">
         <div className="w-full h-[250px] relative flex items-center justify-center">
           <ResponsiveContainer width="100%" height="100%">
             <RadialBarChart

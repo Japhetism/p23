@@ -9,7 +9,7 @@ import WeeklyTasksCard from "@/components/dashboard/WeeklyTasksCard";
 import useDashboardViewModel from "./viewmodel";
 
 const Dashboard = () => {
-  const { leads, revenue, retentionRate, customers, tasks, insight } =
+  const { leads, revenue, retentionRate, customers, tasks } =
     useDashboardViewModel();
 
   return (
@@ -20,17 +20,25 @@ const Dashboard = () => {
         <TotalSalesCard sales={leads.totalSales} />
       </div>
 
-      <div className="grid grid-cols-3 gap-4 sm:gap-5">
-        <div className="col-span-2 flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
+        <div className="lg:col-span-2 flex flex-col gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <RevenueCard data={revenue.trend} />
             <RetentionRateCard data={retentionRate.data} />
           </div>
-          <WeeklyTasksCard data={tasks.data} meetings={tasks.meetings} />
+
+          <div className="flex flex-col gap-4">
+            <div className="order-2 lg:order-1">
+              <WeeklyTasksCard data={tasks.data} meetings={tasks.meetings} />
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-4">
-          <TopCustomersCard data={customers.data} topCustomers={customers.topCustomers} />
+        <div className="flex flex-col gap-4 order-1 lg:order-none">
+          <TopCustomersCard
+            data={customers.data}
+            topCustomers={customers.topCustomers}
+          />
         </div>
       </div>
     </React.Fragment>
