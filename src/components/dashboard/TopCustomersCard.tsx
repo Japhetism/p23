@@ -72,7 +72,7 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
         {topCustomers.map((c, i) => (
           <div
             key={i}
-            className="flex items-center gap-3 p-2 rounded hover:bg-gray-100 transition-colors cursor-pointer"
+            className="flex items-center gap-3 p-2 rounded-[20px] hover:bg-[#ECECEC] transition-colors cursor-pointer"
           >
             <div
               className="w-9 h-9 rounded-full flex items-center justify-center text-sm"
