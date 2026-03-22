@@ -75,6 +75,6 @@ export const MockDashboardData: DashboardData = {
   insight: {
     name: "Promising Customer",
     score: 4.5,
-    totalScore: 5.0
-  }
+    totalScore: 5.0,
+  },
 };
