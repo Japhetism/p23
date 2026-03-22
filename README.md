@@ -35,7 +35,6 @@ You can view the deployed application here:
 - Dynamic charts implemented with **Recharts**
 - Global and reusable components
 - Typed with **TypeScript** for type safety
-- Form handling with **React Hook Form**
 - Icons via **Lucide React**
 - Dropdown options using constants for easy updates
 - Attention to UI detail: spacing, colors, typography
@@ -57,7 +56,7 @@ You can view the deployed application here:
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-link>
+git clone https://github.com/Japhetism/p23.git
 cd p23_africa_assessment
 
 ```
@@ -73,7 +72,7 @@ npm run dev
 
 ```
 
-The app will run locally at: http://localhost:5173
+The app will run locally at: http://localhost:8080
 Changes will hot-reload automatically.
 
 ### 4. Build for Production
