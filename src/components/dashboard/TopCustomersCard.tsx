@@ -8,7 +8,20 @@ type TopCustomersCardProps = {
 };
 
 const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
-  const legends = [...data].reverse();
+  const normalizedData = data.map((item) => ({
+    ...item,
+    uv: Math.min(item.uv, 100),
+  }));
+
+  const chartData = [
+    ...normalizedData,
+    { name: "dummy", uv: 100, fill: "#ffffff" },
+  ];
+
+  const maxPercentage = Math.max(...normalizedData.map((d) => d.uv));
+
+  const legends = [...normalizedData].reverse();
+
   return (
     <div className="bg-card rounded-xl p-5 border border-border shadow-md flex flex-col gap-4">
       {/* Header */}
@@ -21,7 +34,6 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
         </select>
       </div>
 
-      {/* Radial Bar Chart */}
       <div className="w-full flex justify-center items-center mt-16">
         <div className="w-full h-[250px] relative flex items-center justify-center">
           <ResponsiveContainer width="100%" height="100%">
@@ -29,18 +41,19 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
               cx="50%"
               cy="50%"
               innerRadius={70}
-              outerRadius={120}
+              outerRadius={150}
               barSize={30}
-              data={data}
+              data={chartData}
               startAngle={90}
               endAngle={-270}
             >
-              <RadialBar dataKey="uv" cornerRadius={10} background />
+              <RadialBar dataKey="uv" cornerRadius={10} background></RadialBar>
             </RadialBarChart>
           </ResponsiveContainer>
 
-          {/* Centered 99% */}
-          <div className="absolute text-2xl font-bold text-foreground">99%</div>
+          <div className="absolute text-[24px] font-bold text-[#000000]">
+            {maxPercentage}%
+          </div>
         </div>
       </div>
 
@@ -57,7 +70,6 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
         ))}
       </div>
 
-      {/* Customer List */}
       <div className="flex flex-col gap-3 pl-5 pr-5">
         {topCustomers.map((c, i) => (
           <div key={i} className="flex items-center gap-3">

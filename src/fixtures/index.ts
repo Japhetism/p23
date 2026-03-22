@@ -52,9 +52,9 @@ export const MockDashboardData: DashboardData = {
   },
   customers: {
     data: [
-      { name: "Customer 3", uv: 75, fill: "#FD46E8" },
-      { name: "Customer 2", uv: 60, fill: "#146AFA" },
-      { name: "Customer 1", uv: 65, fill: "#021717" },
+      { name: "Customer 3", uv: 65, fill: "#FD46E8" },
+      { name: "Customer 2", uv: 80, fill: "#146AFA" },
+      { name: "Customer 1", uv: 99, fill: "#021717" },
     ],
 
     topCustomers: [
