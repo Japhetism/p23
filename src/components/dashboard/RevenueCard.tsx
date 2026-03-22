@@ -7,6 +7,7 @@ import {
   YAxis,
   ResponsiveContainer,
   Cell,
+  LabelList,
 } from "recharts";
 
 type RevenueCardProps = {
@@ -16,11 +17,26 @@ type RevenueCardProps = {
 const RevenueCard = ({ data }: RevenueCardProps) => {
   const transformedData = transformRevenueTrend(data);
 
-  // Get the maximum value in the data
-  const maxValue = Math.max(...transformedData.map(item => item.v));
+  const maxValue = Math.max(...transformedData.map((item) => item.v));
+  const barWidth = 30; // same as barSize in BarChart
+
+  // Properly center the label above the max bar
+  const renderMaxLabel = (props: any) => {
+    const { x, y, value } = props;
+    if (value !== maxValue) return null;
+
+    // Center the label by subtracting half of the label width (here 30px)
+    return (
+      <foreignObject x={x + barWidth / 2 - 20} y={y - 25} width={40} height={20}>
+        <div className="flex items-center justify-center bg-[#F7DCFE] text-[#616263] text-[10px] rounded-[10px] px-2 py-[1px]">
+          ${value}
+        </div>
+      </foreignObject>
+    );
+  };
 
   return (
-    <div className="bg-card rounded-2xl p-5 border border-border shadow-md pr-10 relative">
+    <div className="bg-card rounded-2xl p-5 border border-border shadow-md pr-10">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <h3 className="text-[14px] font-medium text-[#34373C]">Revenue</h3>
@@ -30,11 +46,11 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
         </select>
       </div>
 
-      <div className="h-36 relative">
+      <div className="h-36">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={transformedData}
-            barSize={30}
+            barSize={barWidth}
             barCategoryGap="30%"
             margin={{ top: 20, right: 0, bottom: 0, left: 0 }}
           >
@@ -60,27 +76,10 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
                   fill={entry.v === maxValue ? "#021717" : "#F5F5F5"}
                 />
               ))}
+              <LabelList content={renderMaxLabel} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-
-        {/* Max value label */}
-        {transformedData.map((entry, i) =>
-          entry.v === maxValue ? (
-            <div
-              key={i}
-              className="absolute -top-6 w-8 h-5 px-6 flex items-center justify-center bg-[#F7DCFE] text-[#616263] text-[10px] rounded-[20px]"
-              style={{
-                top: "5px",
-                left: `calc(${(i / transformedData.length) * 100}% + ${
-                  30 - (30 / 2)
-                }px)`, // centers div on the bar
-              }}
-            >
-              ${entry.v}
-            </div>
-          ) : null
-        )}
       </div>
     </div>
   );
