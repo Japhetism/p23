@@ -6,9 +6,19 @@ type RetentionRateCardProps = {
 };
 
 const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
+  const completed = data[0]?.value || 0;
+  const remaining = data[1]?.value || 100 - completed;
+
+  const pieData = [
+    { name: "completed", value: completed },
+    { name: "divider", value: 1 },
+    { name: "remaining", value: remaining },
+  ];
+
+  const remainingValue = data.find(d => d.name === "Remaining")?.value;
+
   return (
     <div className="bg-[#F9FFFF] rounded-2xl p-5 border border-border shadow-md relative pl-20 pr-10">
-      {/* Header */}
       <div className="flex items-center justify-between w-full mb-4">
         <h3 className="text-[14px] font-medium text-[#34373C]">
           Retention Rate
@@ -18,14 +28,12 @@ const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
         </select>
       </div>
 
-      {/* Chart container */}
       <div
         className="relative w-full flex justify-center"
-        style={{ height: 180 }}
+        style={{ height: 180, overflow: "visible" }}
       >
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="120%" height="120%">
           <PieChart>
-            {/* Gradient */}
             <defs>
               <linearGradient
                 id="halfPieGradient"
@@ -40,28 +48,25 @@ const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
             </defs>
 
             <Pie
-              data={data}
+              data={pieData}
               startAngle={180}
               endAngle={0}
               innerRadius={60}
-              outerRadius={90}
+              outerRadius={105}
               dataKey="value"
-              stroke="white" // border color between slices
-              strokeWidth={2} // thickness of the border
+              stroke="none"
             >
-              {data.map((entry, index) => (
-                <Cell
-                  key={index}
-                  fill={index === 0 ? "url(#halfPieGradient)" : "#E5E5E5"}
-                />
-              ))}
+              {pieData.map((entry, index) => {
+                if (entry.name === "completed") return <Cell key={index} fill="url(#halfPieGradient)" />;
+                if (entry.name === "divider") return <Cell key={index} fill="#000" />;
+                return <Cell key={index} fill="#E9ECF1" />;
+              })}
             </Pie>
           </PieChart>
         </ResponsiveContainer>
 
-        {/* Center text */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <span className="text-[36px] text-[#34373C] font-bold">58%</span>
+          <span className="text-[36px] text-[#34373C] font-bold">{remainingValue}</span>
         </div>
       </div>
     </div>

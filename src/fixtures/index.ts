@@ -46,8 +46,8 @@ export const MockDashboardData: DashboardData = {
   },
   retentionRate: {
     data: [
-      { name: "Completed", value: 70 },
-      { name: "Remaining", value: 30 },
+      { name: "Completed", value: 42 },
+      { name: "Remaining", value: 58 },
     ],
   },
   customers: {
