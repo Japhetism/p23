@@ -11,6 +11,7 @@ import {
 import TimeFrameSelection from "../TimeFrameSelection";
 import { transformRevenueTrend } from "@/utils";
 import { TrendByDay } from "@/types";
+import CardEmptyState from "../CardEmptyState";
 
 type RevenueCardProps = {
   data: TrendByDay[];
@@ -19,6 +20,9 @@ type RevenueCardProps = {
 const RevenueCard = ({ data }: RevenueCardProps) => {
   const [selectedTimeFrame, setSelectedTimeFrame] = useState<string>("Weekly");
   const transformedData = transformRevenueTrend(data);
+
+  const isEmpty =
+    !data || data.length === 0 || data.every((item) => item.value === 0);
 
   const maxValue = Math.max(...transformedData.map((item) => item.v));
   const barWidth = 30;
@@ -70,42 +74,54 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
         />
       </div>
 
-      <div className="h-36" role="img" aria-label={chartSummary}>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={transformedData}
-            barSize={barWidth}
-            barCategoryGap="30%"
-            margin={{ top: 40, right: 0, bottom: 0, left: 0 }}
-            aria-hidden="true"
-          >
-            <YAxis
-              axisLine={false}
-              tickLine={false}
-              tick={{ fontSize: 10, fill: "hsl(210,10%,50%)" }}
-              tickFormatter={(v) => `${v}$`}
-              width={35}
-              domain={[yAxisMin, yAxisMax]}
-              ticks={yAxisTicks}
-            />
-            <XAxis
-              dataKey="day"
-              axisLine={false}
-              tickLine={false}
-              tick={{ fontSize: 11, fill: "hsl(210,10%,50%)" }}
-            />
-            <Bar dataKey="v" radius={[20, 20, 20, 20]}>
-              {transformedData.map((entry, i) => (
-                <Cell
-                  key={i}
-                  fill={entry.v === maxValue ? "#021717" : "#F5F5F5"}
-                />
-              ))}
-              <LabelList content={renderMaxLabel} />
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+      {isEmpty ? (
+        <div className="flex-1 flex items-center justify-center">
+          <CardEmptyState
+            title="No revenue recorded"
+            description="We couldn't find any revenue data for this period. Try adjusting your filters or importing your latest sales."
+            actionLabel="Import Data"
+            onAction={() => {}}
+            className="border-none bg-transparent p-0"
+          />
+        </div>
+      ) : (
+        <div className="h-36" role="img" aria-label={chartSummary}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={transformedData}
+              barSize={barWidth}
+              barCategoryGap="30%"
+              margin={{ top: 40, right: 0, bottom: 0, left: 0 }}
+              aria-hidden="true"
+            >
+              <YAxis
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 10, fill: "hsl(210,10%,50%)" }}
+                tickFormatter={(v) => `${v}$`}
+                width={35}
+                domain={[yAxisMin, yAxisMax]}
+                ticks={yAxisTicks}
+              />
+              <XAxis
+                dataKey="day"
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 11, fill: "hsl(210,10%,50%)" }}
+              />
+              <Bar dataKey="v" radius={[20, 20, 20, 20]}>
+                {transformedData.map((entry, i) => (
+                  <Cell
+                    key={i}
+                    fill={entry.v === maxValue ? "#021717" : "#F5F5F5"}
+                  />
+                ))}
+                <LabelList content={renderMaxLabel} />
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      )}
     </section>
   );
 };

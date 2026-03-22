@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Smile, XCircle, Video } from "lucide-react";
 import TimeFrameSelection from "../TimeFrameSelection";
+import CardEmptyState from "../CardEmptyState";
 import { Person } from "@/types";
 
 type WeeklyTasksCardProps = {
@@ -13,6 +14,8 @@ type WeeklyTasksCardProps = {
 
 const WeeklyTasksCard = ({ data, meetings }: WeeklyTasksCardProps) => {
   const [selectedTimeFrame, setSelectedTimeFrame] = useState<string>("Daily");
+
+  const hasData = meetings && meetings.length > 0;
 
   return (
     <section
@@ -70,49 +73,58 @@ const WeeklyTasksCard = ({ data, meetings }: WeeklyTasksCardProps) => {
               onChange={(val) => setSelectedTimeFrame(val)}
             />
           </div>
-
-          <ul
-            className="flex flex-col gap-3 bg-[#113939] rounded-[20px] p-5 list-none"
-            aria-labelledby="meetings-heading"
-          >
-            {meetings.map((m, i) => (
-              <li
-                key={i}
-                className="flex items-center gap-3 bg-[#F9FFFF] rounded-[20px] px-4 py-3 shadow-sm"
-              >
-                <div
-                  className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-sm shrink-0 overflow-hidden"
-                  style={{ backgroundColor: m.color }}
+          {hasData ? (
+            <ul
+              className="flex flex-col gap-3 bg-[#113939] rounded-[20px] p-5 list-none"
+              aria-labelledby="meetings-heading"
+            >
+              {meetings.map((m, i) => (
+                <li
+                  key={i}
+                  className="flex items-center gap-3 bg-[#F9FFFF] rounded-[20px] px-4 py-3 shadow-sm"
                 >
-                  <img
-                    src={m.pix}
-                    alt={`${m.name} profile`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[15px] text-[#021717] font-semibold truncate">
-                    {m.name}
-                  </p>
-                  <p className="text-[10px] text-[#021717]">{m.role}</p>
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    className="opacity-60 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#021717] rounded-full"
-                    aria-label={`Cancel meeting with ${m.name}`}
+                  <div
+                    className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-sm shrink-0 overflow-hidden"
+                    style={{ backgroundColor: m.color }}
                   >
-                    <XCircle size={20} color="#F1CAC4" />
-                  </button>
-                  <button
-                    className="opacity-60 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#021717] rounded-full"
-                    aria-label={`Start video call with ${m.name}`}
-                  >
-                    <Video size={20} color="#84A9E5" />
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
+                    <img
+                      src={m.pix}
+                      alt={`${m.name} profile`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[15px] text-[#021717] font-semibold truncate">
+                      {m.name}
+                    </p>
+                    <p className="text-[10px] text-[#021717]">{m.role}</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      className="opacity-60 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#021717] rounded-full"
+                      aria-label={`Cancel meeting with ${m.name}`}
+                    >
+                      <XCircle size={20} color="#F1CAC4" />
+                    </button>
+                    <button
+                      className="opacity-60 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#021717] rounded-full"
+                      aria-label={`Start video call with ${m.name}`}
+                    >
+                      <Video size={20} color="#84A9E5" />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <CardEmptyState
+              title="No Meetings Scheduled"
+              description="Start by creating your first meeting."
+              onAction={() => {}}
+              actionLabel="New Meeting"
+              className="h-auto bg-transparent p-0"
+            />
+          )}
         </div>
       </div>
     </section>
