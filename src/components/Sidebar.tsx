@@ -49,6 +49,9 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
         ${open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}
       >
+        <button className="lg:hidden text-sidebar-fg" onClick={onClose}>
+          <X size={20} />
+        </button>
         <div className="flex items-center justify-center mt-5 mb-10 gap-4">
           <div className="flex items-center gap-2">
             <div className="w-[27px] h-[27px] rounded-full bg-white" />
@@ -56,9 +59,6 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
               Logo
             </span>
           </div>
-          <button className="lg:hidden text-sidebar-fg" onClick={onClose}>
-            <X size={20} />
-          </button>
         </div>
 
         <nav className="flex flex-col gap-1">
