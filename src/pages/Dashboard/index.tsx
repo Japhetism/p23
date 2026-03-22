@@ -1,4 +1,3 @@
-import React from "react";
 import TotalLeadsCard from "@/components/dashboard/TotalLeadsCard";
 import LeadsPipelineCard from "@/components/dashboard/LeadsPipelineCard";
 import TotalSalesCard from "@/components/dashboard/TotalSalesCard";
@@ -13,19 +12,26 @@ const Dashboard = () => {
     useDashboardViewModel();
 
   return (
-    <>
-      {/* First row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-5">
+    <main
+      id="main-content"
+      className="focus:outline-none"
+      aria-label="Executive Dashboard"
+    >
+      {/* First row: High-level Metrics */}
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-5"
+        role="region"
+        aria-label="Key Performance Indicators"
+      >
         <TotalLeadsCard data={leads.trend} total={leads.total} />
         <LeadsPipelineCard data={leads.pipelines} />
         <TotalSalesCard sales={leads.totalSales} />
       </div>
 
-      {/* Second row */}
+      {/* Second row: Detailed Analytics */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
-        {/* Left column (spans 2 columns on desktop) */}
+        {/* Left column (Analytics & Tasks) */}
         <div className="lg:col-span-2 flex flex-col gap-4 h-full">
-          {/* Top row inside left column */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
             <div className="h-full flex flex-col">
               <RevenueCard data={revenue.trend} />
@@ -35,13 +41,12 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Bottom row inside left column */}
           <div className="flex flex-col gap-4 h-full">
             <WeeklyTasksCard data={tasks.data} meetings={tasks.meetings} />
           </div>
         </div>
 
-        {/* Right column */}
+        {/* Right column (Customer Insights) */}
         <div className="flex flex-col gap-4 h-full">
           <TopCustomersCard
             data={customers.data}
@@ -49,7 +54,7 @@ const Dashboard = () => {
           />
         </div>
       </div>
-    </>
+    </main>
   );
 };
 
