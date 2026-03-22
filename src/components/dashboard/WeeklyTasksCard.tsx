@@ -38,7 +38,7 @@ const WeeklyTasksCard = ({ data, meetings }: WeeklyTasksCardProps) => (
           <h3 className="text-[10px] text-white font-medium">
             Scheduled Meetings
           </h3>
-          <select className="text-xs bg-[#5E5D5D] text-dashboard-dark-fg px-1 py-1 rounded-[3px] border-none outline-none">
+          <select className="text-[9px] text-white bg-[#5E5D5D] px-2 py-1 rounded-[3px] border-none outline-none cursor-pointer">
             <option>Daily</option>
           </select>
         </div>
