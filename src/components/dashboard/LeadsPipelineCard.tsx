@@ -15,7 +15,7 @@ const LeadsPipelineCard = ({ data }: LeadsPipelineCardProps) => (
     </div>
     <div className="flex items-center gap-1">
       {data.map((item: Pipeline, index: number) => (
-        <div className="flex flex-col gap-1 items-start">
+        <div key={index} className="flex flex-col gap-1 items-start">
           <span
             className="text-[9px] text-white px-2 py-1 rounded-[3px] font-medium"
             style={{ background: item.color }}
