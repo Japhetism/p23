@@ -13,21 +13,17 @@ You can view the deployed application here:
 
 ---
 
-## 📂 Project Structure
+## 📂 Folder Overview
 
-p23_africa_assessment/
-├── assets/ # Images and static assets
-├── components/ # Global reusable components
-├── constants/ # Application constants (e.g., Timeframe options for dropdown)
-├── fixtures/ # Mock data for charts, tables, and UI testing
-├── pages/ # Application screens
-│ ├── view/ # Presentation layer (UI components specific to each page)
-│ └── container/ # Container layer (state management, data fetching)
-├── types/ # TypeScript types and interfaces
-├── utils/ # Helper and utility functions
-├── vite.config.ts # Vite configuration
-├── package.json # Project dependencies and scripts
-└── README.md # This file
+- assets/ – Stores images, icons, and static files
+- components/ – Global reusable React components (buttons, cards, headers, etc.)
+- constants/ – Application constants such as dropdown options, API endpoints, or configuration values
+- fixtures/ – Mock data for charts, tables, or UI testing
+- pages/ – Application screens
+    - view/ – Pure presentation components
+    - container/ – State management, API calls, and data fetching
+- types/ – TypeScript types and interfaces for strong typing
+- utils/ – Helper functions and utility modules
 
 ---
 
@@ -53,11 +49,7 @@ p23_africa_assessment/
 - **TailwindCSS** – Utility-first CSS framework
 - **Recharts** – Charts and visualizations
 - **TypeScript** – Type safety
-- **React Hook Form** – Form state management
 - **Lucide React** – Icons
-- **Vitest & Testing Library** – Unit tests
-- **Class Variance Authority** – For managing component variants
-- **Vaul** – Component utilities (if used in state or hooks)
 
 ---
 
