@@ -13,35 +13,43 @@ const Dashboard = () => {
     useDashboardViewModel();
 
   return (
-    <React.Fragment>
+    <>
+      {/* First row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-5">
         <TotalLeadsCard data={leads.trend} total={leads.total} />
         <LeadsPipelineCard data={leads.pipelines} />
         <TotalSalesCard sales={leads.totalSales} />
       </div>
 
+      {/* Second row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
-        <div className="lg:col-span-2 flex flex-col gap-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <RevenueCard data={revenue.trend} />
-            <RetentionRateCard data={retentionRate.data} />
+        {/* Left column (spans 2 columns on desktop) */}
+        <div className="lg:col-span-2 flex flex-col gap-4 h-full">
+          {/* Top row inside left column */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+            <div className="h-full flex flex-col">
+              <RevenueCard data={revenue.trend} />
+            </div>
+            <div className="h-full flex flex-col">
+              <RetentionRateCard data={retentionRate.data} />
+            </div>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <div className="order-2 lg:order-1">
-              <WeeklyTasksCard data={tasks.data} meetings={tasks.meetings} />
-            </div>
+          {/* Bottom row inside left column */}
+          <div className="flex flex-col gap-4 h-full">
+            <WeeklyTasksCard data={tasks.data} meetings={tasks.meetings} />
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 order-1 lg:order-none">
+        {/* Right column */}
+        <div className="flex flex-col gap-4 h-full">
           <TopCustomersCard
             data={customers.data}
             topCustomers={customers.topCustomers}
           />
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

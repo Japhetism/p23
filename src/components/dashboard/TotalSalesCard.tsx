@@ -5,7 +5,7 @@ type TotalSalesCardProps = {
 };
 
 const TotalSalesCard = ({ sales }: TotalSalesCardProps) => (
-  <div className="bg-[#F9FFFF] rounded-2xl p-5 border border-border shadow-md pl-20 pr-10">
+  <div className="bg-[#F9FFFF] rounded-2xl p-5 border border-border shadow-md lg:pl-20 lg:pr-10">
     <h3 className="text-[14px] font-medium text-[#34373C]">Total Sales</h3>
     <div className="my-4">
       <span className="text-[50px] text-[#34373C] font-medium">{sales}</span>

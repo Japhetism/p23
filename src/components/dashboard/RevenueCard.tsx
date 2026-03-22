@@ -1,5 +1,4 @@
-import { transformRevenueTrend } from "@/lib/utils";
-import { TrendByDay } from "@/types";
+import { useState } from "react";
 import {
   BarChart,
   Bar,
@@ -9,12 +8,16 @@ import {
   Cell,
   LabelList,
 } from "recharts";
+import { transformRevenueTrend } from "@/utils";
+import { TrendByDay } from "@/types";
+import { TIMEFRAMES } from "@/constants";
 
 type RevenueCardProps = {
   data: TrendByDay[];
 };
 
 const RevenueCard = ({ data }: RevenueCardProps) => {
+  const [selectedTimeFrame, setSelectedTimeFrame] = useState<string>("Weekly");
   const transformedData = transformRevenueTrend(data);
 
   const maxValue = Math.max(...transformedData.map((item) => item.v));
@@ -43,13 +46,21 @@ const RevenueCard = ({ data }: RevenueCardProps) => {
   };
 
   return (
-    <div className="bg-card rounded-2xl p-5 border border-border shadow-md pr-10">
+    <div className="bg-card rounded-2xl p-5 border border-border shadow-md lg:pr-10 h-full">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <h3 className="text-[14px] font-medium text-[#34373C]">Revenue</h3>
         </div>
-        <select className="text-[9px] text-white bg-[#5E5D5D] px-1 py-1 rounded-[3px] border-none outline-none cursor-pointer">
-          <option>Weekly</option>
+        <select
+          value={selectedTimeFrame}
+          onChange={(e) => setSelectedTimeFrame(e.target.value)}
+          className="text-[9px] text-white bg-[#5E5D5D] px-1 py-1 rounded-[3px] border-none outline-none cursor-pointer"
+        >
+          {TIMEFRAMES.map((item: string, index: number) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
         </select>
       </div>
 

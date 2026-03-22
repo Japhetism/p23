@@ -1,5 +1,5 @@
 import { BarChart, Bar, ResponsiveContainer, Cell } from "recharts";
-import { formatCurrency, transformTrend } from "@/lib/utils";
+import { formatCurrency, transformTrend } from "@/utils";
 import { TrendByMonth } from "@/types";
 
 type TotalLeadsCardsProps = {
@@ -11,7 +11,7 @@ const TotalLeadsCard = ({ data, total }: TotalLeadsCardsProps) => {
   const transformedData = transformTrend(data);
 
   return (
-    <div className="bg-card rounded-2xl p-5 border border-border shadow-md pl-20 pr-10">
+    <div className="bg-card rounded-2xl p-5 border border-border shadow-md lg:pl-20 lg:pr-10">
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-[14px] text-[#34373C] font-medium text-muted-foreground">
           Total Leads

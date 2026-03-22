@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { MoreHorizontal } from "lucide-react";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import { CustomerChartData, Person } from "@/types";
+import { TIMEFRAMES } from "@/constants";
 
 type TopCustomersCardProps = {
   data: CustomerChartData[];
@@ -8,6 +10,7 @@ type TopCustomersCardProps = {
 };
 
 const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
+  const [selectedTimeFrame, setSelectedTimeFrame] = useState<string>("Weekly");
   const normalizedData = data.map((item) => ({
     ...item,
     uv: Math.min(item.uv, 100),
@@ -23,13 +26,21 @@ const TopCustomersCard = ({ data, topCustomers }: TopCustomersCardProps) => {
   const legends = [...normalizedData].reverse();
 
   return (
-    <div className="bg-card rounded-xl p-5 border border-border shadow-md flex flex-col gap-4">
-      <div className="flex items-center justify-between pl-20 pr-10">
+    <div className="bg-card rounded-xl p-5 border border-border shadow-md flex flex-col gap-4 h-full">
+      <div className="flex items-center justify-between lg:pl-20 lg:pr-10">
         <h3 className="text-[14px] font-medium text-[#34373C]">
           Top Customers
         </h3>
-        <select className="text-[9px] text-white bg-[#5E5D5D] px-1 py-1 rounded-[3px] border-none outline-none cursor-pointer">
-          <option>Weekly</option>
+        <select
+          value={selectedTimeFrame}
+          onChange={(e) => setSelectedTimeFrame(e.target.value)}
+          className="text-[9px] text-white bg-[#5E5D5D] px-1 py-1 rounded-[3px] border-none outline-none cursor-pointer"
+        >
+          {TIMEFRAMES.map((item: string, index: number) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
         </select>
       </div>
 

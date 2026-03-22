@@ -1,4 +1,4 @@
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@/utils";
 import { Pipeline } from "@/types";
 
 type LeadsPipelineCardProps = {
@@ -6,7 +6,7 @@ type LeadsPipelineCardProps = {
 };
 
 const LeadsPipelineCard = ({ data }: LeadsPipelineCardProps) => (
-  <div className="bg-[#F9FFFF] rounded-2xl p-5 border border-border shadow-md pl-20 pr-10">
+  <div className="bg-[#F9FFFF] rounded-2xl p-5 border border-border shadow-md lg:pl-20 lg:pr-10">
     <div className="flex items-center justify-between mb-4">
       <h3 className="text-[14px] font-medium text-[#34373C]">Leads Pipeline</h3>
       <button className="text-[9px] bg-[#5E5D5D] text-dashboard-dark-fg px-2 py-1 rounded-[3px]">

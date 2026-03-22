@@ -1,11 +1,15 @@
-import { ChartData } from "@/types";
+import { useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { ChartData } from "@/types";
+import { TIMEFRAMES } from "@/constants";
 
 type RetentionRateCardProps = {
   data: ChartData[];
 };
 
 const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
+  const [selectedTimeFrame, setSelectedTimeFrame] = useState<string>("Weekly");
+
   const completed = data[0]?.value || 0;
   const remaining = data[1]?.value || 100 - completed;
 
@@ -15,16 +19,24 @@ const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
     { name: "remaining", value: remaining },
   ];
 
-  const remainingValue = data.find(d => d.name === "Remaining")?.value;
+  const remainingValue = data.find((d) => d.name === "Remaining")?.value;
 
   return (
-    <div className="bg-[#F9FFFF] rounded-2xl p-5 border border-border shadow-md relative pl-20 pr-10">
+    <div className="bg-[#F9FFFF] rounded-2xl p-5 border border-border shadow-md relative lg:pl-20 lg:pr-10 h-full">
       <div className="flex items-center justify-between w-full mb-4">
         <h3 className="text-[14px] font-medium text-[#34373C]">
           Retention Rate
         </h3>
-        <select className="text-[9px] text-white bg-[#5E5D5D] px-2 py-1 rounded-[3px] border-none outline-none cursor-pointer">
-          <option>Weekly</option>
+        <select
+          value={selectedTimeFrame}
+          onChange={(e) => setSelectedTimeFrame(e.target.value)}
+          className="text-[9px] text-white bg-[#5E5D5D] px-2 py-1 rounded-[3px] border-none outline-none cursor-pointer"
+        >
+          {TIMEFRAMES.map((item: string, index: number) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -57,8 +69,10 @@ const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
               stroke="none"
             >
               {pieData.map((entry, index) => {
-                if (entry.name === "completed") return <Cell key={index} fill="url(#halfPieGradient)" />;
-                if (entry.name === "divider") return <Cell key={index} fill="#000" />;
+                if (entry.name === "completed")
+                  return <Cell key={index} fill="url(#halfPieGradient)" />;
+                if (entry.name === "divider")
+                  return <Cell key={index} fill="#000" />;
                 return <Cell key={index} fill="#E9ECF1" />;
               })}
             </Pie>
@@ -66,7 +80,9 @@ const RetentionRateCard = ({ data }: RetentionRateCardProps) => {
         </ResponsiveContainer>
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <span className="text-[36px] text-[#34373C] font-bold">{remainingValue}</span>
+          <span className="text-[36px] text-[#34373C] font-bold">
+            {remainingValue}
+          </span>
         </div>
       </div>
     </div>
