@@ -32,6 +32,13 @@ export type Person = {
   color: string;
 };
 
+export type Insight = {
+  name: string;
+  score: number;
+  totalScore: number;
+  pix: string;
+}
+
 export type AuthUser = {
   fullName: string;
   email: string;
@@ -62,11 +69,7 @@ export type DashboardData = {
     }[];
     meetings: Person[];
   };
-  insight: {
-    name: string;
-    score: number;
-    totalScore: number;
-  }
+  insight: Insight;
 };
 
 export type OutputItem = {

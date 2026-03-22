@@ -5,10 +5,9 @@ import {
   FolderKanban,
   CalendarCheck,
   X,
-  ChevronRight,
 } from "lucide-react";
-import image117 from "@/assets/images/image117.png";
 import { MockDashboardData } from "@/fixtures";
+import CustomerMetric from "./CustomerMetric";
 
 const navItems = [
   { icon: LayoutGrid, label: "Overview", active: true },
@@ -100,46 +99,8 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
           ))}
         </nav>
 
-        <div className="mt-auto bg-card rounded-xl p-4 text-card-foreground hidden lg:block h-[279px] mb-10">
-          <div className="flex items-center justify-between mb-1">
-            <div>
-              <p className="text-[14px] text-[#34373C] font-medium">
-                Customer metric
-              </p>
-              <p className="text-[10px] text-[#616263] font-regular text-muted-foreground">
-                Overall Insight
-              </p>
-            </div>
-            {/* <span className="text-muted-foreground">›</span> */}
-            <ChevronRight className="text-[#34373C]" size={24} />
-          </div>
-          <div className="flex items-center justify-center mt-8">
-            <div className="relative w-[149px] h-[149px] rounded-full p-[2px] bg-[conic-gradient(from_25deg_at_50%_50%,#FD6046_21.57%,#FFFFFF_80.46%,#FFFFFF_80.46%)] flex items-center justify-center">
-              {/* 🔴 Left dot */}
-              <div className="absolute left-3.5 top-8 -translate-y-1/2 -translate-x-1/2 w-[10px] h-[10px] rounded-full bg-[#FD6046]" />
-
-              {/* 🔝 Top text */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[7px] text-[#616263] font-medium">
-                {insight.score}/{insight.totalScore}
-              </div>
-
-              {/* Inner circles */}
-              <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                <div className="w-[117px] h-[117px] rounded-full p-[3px] bg-[linear-gradient(180deg,#F6F6F6_0%,#38696B_100%)] flex items-center justify-center">
-                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
-                    <img
-                      src={image117}
-                      alt="image"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-[10px] text-[#616263] text-center font-medium mt-2">
-            {insight.name}
-          </p>
+        <div className="mt-auto mb-10">
+          <CustomerMetric insight={insight} />
         </div>
       </aside>
     </>

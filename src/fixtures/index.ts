@@ -1,4 +1,5 @@
 import image61 from "@/assets/images/image61.png";
+import image117 from "@/assets/images/image117.png";
 import image1 from "@/assets/images/image1.png";
 import image2 from "@/assets/images/image2.png";
 import image3 from "@/assets/images/image3.png";
@@ -76,5 +77,6 @@ export const MockDashboardData: DashboardData = {
     name: "Promising Customer",
     score: 4.5,
     totalScore: 5.0,
+    pix: image117
   },
 };
